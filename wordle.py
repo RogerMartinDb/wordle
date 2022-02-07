@@ -3,6 +3,7 @@ from colorama import Fore
 from colorama import Style
 import sys
 import random
+import os
 
 def deleteLineAbove():
   sys.stdout.write("\033[F\033[K")
@@ -43,6 +44,9 @@ def randomFiveLetterWord():
 
 
 ################################################
+
+os.system('clear')
+print('\n  Welcome to WORDLE!\n\n')
 
 five_letter_words = findFiveLetterWords()
 
