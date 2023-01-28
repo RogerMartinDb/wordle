@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-from colorama import Fore
-from colorama import Style
+from colorama import Fore, Back, Style
 import sys
 import random
 import os
@@ -19,15 +18,15 @@ def getGuess():
   return guess
 
 def giveHint():
-  hint = ''
+  hint = f'{Back.BLACK}'
 
   for i in range(5):
     if answer[i] == guess[i]:
-      hint += f'{Fore.GREEN}{Style.NORMAL}{guess[i]}'
+      hint += f'{Fore.GREEN}{Style.BRIGHT}{guess[i]}'
     elif guess[i] in answer:
-      hint += f'{Fore.YELLOW}{Style.NORMAL}{guess[i]}'
+      hint += f'{Fore.YELLOW}{Style.BRIGHT}{guess[i]}'
     else:
-      hint += f'{Fore.RESET}{Style.DIM}{guess[i]}'
+      hint += f'{Fore.WHITE}{Style.NORMAL}{guess[i]}'
 
   hint += Style.RESET_ALL
   print(f'try {attempt+1}: {hint}')
@@ -57,10 +56,10 @@ for attempt in range(6):
   giveHint()
 
   if guess == answer:
-    print('\n  hurray! you got it :)\n')
+    print('\n  hurray! you got it 😊\n')
     break
 
 if guess != answer:
-  print('\n  sorry dude, better luck next time\n')
+  print('\n  🙁 sorry dude, better luck next time\n')
   if 'y' == input('wanna know the answer? (y/n) '):
     print(f'the answer was {answer}')
