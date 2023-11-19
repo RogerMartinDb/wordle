@@ -10,7 +10,7 @@ def deleteLineAbove():
 def getGuess():
   guess = input(f'try {attempt+1}: ')
 
-  while not guess in five_letter_words:
+  while guess not in five_letter_words:
     deleteLineAbove()
     guess = input('guess must be a valid 5 letter word, try again: ')
 
@@ -33,14 +33,11 @@ def giveHint():
 
 def findFiveLetterWords():
   with open('words.txt') as wordFile:
-    all_words = map(lambda word: word[:-1], wordFile.readlines())
-    return list(filter(lambda work: len(work) == 5, all_words))
+    all_words = [word[:-1] for word in wordFile.readlines()]
+    return [word for word in all_words if len(word) == 5]
 
 def randomFiveLetterWord():
-  index = random.randrange(len(five_letter_words))
-  return five_letter_words[index]
-
-
+  return random.choice(five_letter_words)
 
 ################################################
 
@@ -56,10 +53,10 @@ for attempt in range(6):
   giveHint()
 
   if guess == answer:
-    print('\n  hurray! you got it 😊\n')
+    print(f'\n  hurray! you got it 😊\n')
     break
 
 if guess != answer:
-  print('\n  🙁 sorry dude, better luck next time\n')
+  print(f'\n  🙁 sorry dude, better luck next time\n')
   if 'y' == input('wanna know the answer? (y/n) '):
     print(f'the answer was {answer}')
